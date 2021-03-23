@@ -17,7 +17,7 @@ class NewPost extends Component {
             author: this.state.author
         } // axios will stringfy this automaticly (converts this array to JSON)
 
-        axios.post('https://jsonplaceholder.typicode.com/posts', data)
+        axios.post('/posts', data)
             .then(response => {
                 console.log(response);
             });
