@@ -11,10 +11,11 @@ class FullPost extends Component {
     // ok, here we need to do some if-checks because if we update the state inside componentDidUpdate()
     // it'll trigger another update wich will then trigger another state update and so on.
     // It'll be infite loop of get requests.
-    componentDidUpdate() {
-        if (this.props.id) {
+    componentDidMount() {
+        console.log(this.props);
+        if (this.props.match.params.id) {
             if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {
-                axios.get( '/posts/' + this.props.id)
+                axios.get( '/posts/' + this.props.match.params.id)
                     .then( response => {
                         // console.log(response);
                         this.setState({ loadedPost: response.data });
