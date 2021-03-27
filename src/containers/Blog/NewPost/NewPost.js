@@ -26,12 +26,16 @@ class NewPost extends Component {
         axios.post('/posts', data)
             .then(response => {
                 console.log(response);
-                this.setState({submitted: true});
+                this.props.history.replace('/posts');
+                // this.props.history.push('/posts');
+                // this.setState({submitted: true});
             });
     }
 
     render () {
         // conditional redirect with Redirect component
+        // redirect replaces current page on the stack so clicking 'back' on the browser doesn't go to New Post
+        // you can replicate that behaviour by using history.repalace() -method instead of push()
         let redirect = null;
         if (this.state.submitted) {
             redirect = <Redirect to="/posts" />;
